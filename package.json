@@ -1,18 +1,25 @@
 {
-  "name": "bookarta",
+  "name": "renew",
   "main": "expo-router/entry",
   "version": "1.0.0",
   "dependencies": {
+    "@expo-google-fonts/noto-sans": "^0.4.2",
+    "@expo-google-fonts/pt-serif": "^0.4.1",
     "@expo/ui": "~57.0.4",
+    "@react-native-community/datetimepicker": "9.1.0",
     "expo": "~57.0.4",
     "expo-constants": "~57.0.3",
+    "expo-dev-client": "~57.0.5",
     "expo-device": "~57.0.0",
     "expo-font": "~57.0.0",
     "expo-glass-effect": "~57.0.0",
+    "expo-haptics": "~57.0.0",
     "expo-image": "~57.0.0",
     "expo-linking": "~57.0.2",
+    "expo-notifications": "~57.0.3",
     "expo-router": "~57.0.4",
     "expo-splash-screen": "~57.0.2",
+    "expo-sqlite": "~57.0.0",
     "expo-status-bar": "~57.0.0",
     "expo-symbols": "~57.0.0",
     "expo-system-ui": "~57.0.0",
@@ -29,13 +36,14 @@
   },
   "devDependencies": {
     "@types/react": "~19.2.2",
+    "sharp": "^0.35.3",
     "typescript": "~6.0.3"
   },
   "scripts": {
     "start": "expo start",
     "reset-project": "node ./scripts/reset-project.js",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
     "web": "expo start --web",
     "lint": "expo lint"
   },

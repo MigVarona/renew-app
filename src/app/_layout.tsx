@@ -1,18 +1,56 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from 'expo-router';
+import { NotoSans_400Regular } from '@expo-google-fonts/noto-sans/400Regular';
+import { NotoSans_600SemiBold } from '@expo-google-fonts/noto-sans/600SemiBold';
+import { NotoSans_700Bold } from '@expo-google-fonts/noto-sans/700Bold';
+import { PTSerif_400Regular } from '@expo-google-fonts/pt-serif/400Regular';
+import { useFonts } from 'expo-font';
+import { DefaultTheme, Stack, ThemeProvider } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
-import { useColorScheme } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 
 import { AnimatedSplashOverlay } from '@/components/animated-icon';
-import AppTabs from '@/components/app-tabs';
+import { Renew, RenewFonts } from '@/constants/renew-theme';
 
 SplashScreen.preventAutoHideAsync();
 
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
+const RenewTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: Renew.cream,
+    card: Renew.paper,
+    text: Renew.dark,
+    border: Renew.border,
+    primary: Renew.sage,
+  },
+};
+
+export default function RootLayout() {
+  const [fontsLoaded] = useFonts({
+    NotoSans_400Regular,
+    NotoSans_600SemiBold,
+    NotoSans_700Bold,
+    PTSerif_400Regular,
+  });
+
+  if (!fontsLoaded) return null;
+
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+    <ThemeProvider value={RenewTheme}>
+      <StatusBar style="dark" />
       <AnimatedSplashOverlay />
-      <AppTabs />
+      <Stack>
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen
+          name="articles/[slug]"
+          options={{
+            title: '',
+            headerBackTitle: 'Back',
+            headerTintColor: Renew.sage,
+            headerStyle: { backgroundColor: Renew.cream },
+            headerTitleStyle: { fontFamily: RenewFonts.semibold },
+          }}
+        />
+      </Stack>
     </ThemeProvider>
   );
 }

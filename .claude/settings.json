@@ -1,4 +1,15 @@
 {
+  "permissions": {
+    "allow": [
+      "Bash(curl -s -o /dev/null -w \"status=%{http_code}\\\\n\" \"https://www.renew-habits.com/api/articles/category/Nutrition\" --max-time 15)",
+      "Bash(node -p \"require\\('/Users/miguelvarona/bookarta/package.json'\\).dependencies['expo-sqlite'] || 'NO'\")",
+      "Bash(node -e ' *)",
+      "Bash(TZ=Europe/Madrid node -e ' *)",
+      "Bash(node -p \"require\\('./package.json'\\).dependencies['expo-notifications'] || 'no instalado'\")",
+      "Bash(node -p \"require\\('./package.json'\\).dependencies['expo-notifications'] || 'NO'\")",
+      "Bash(node -p \"require\\('./package.json'\\).dependencies['@react-native-community/datetimepicker'] || 'NO'\")"
+    ]
+  },
   "enabledPlugins": {
     "expo@claude-plugins-official": true
   }
