@@ -1,56 +1,67 @@
-# Welcome to your Expo app 👋
+# Renew
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+App móvil de hábitos de bienestar construida con [Expo](https://expo.dev) y React Native. Renew convierte artículos respaldados por evidencia científica en *prácticas* diarias con pasos accionables, seguimiento de progreso, rachas y recordatorios.
 
-## Get started
+Funciona en iOS, Android y web, y consume el contenido editorial desde la API de [renew-habits.com](https://www.renew-habits.com).
 
-1. Install dependencies
+## Características
 
-   ```bash
-   npm install
-   ```
+- **Prácticas diarias**: cada artículo con protocolo se transforma en una práctica con pasos que puedes marcar día a día.
+- **Progreso y rachas**: seguimiento local del avance diario y de la racha actual, persistido con `expo-sqlite/kv-store`.
+- **Orden inteligente**: las prácticas se reordenan según el momento del día (mañana, tarde, noche).
+- **Recordatorios**: notificaciones locales configurables por práctica con `expo-notifications`.
+- **Explorar**: catálogo de artículos con fuentes científicas clasificadas por tipo de estudio (meta-análisis, RCT, cohorte...).
+- **Tema claro/oscuro** automático y tipografía editorial (PT Serif + Noto Sans).
 
-2. Start the app
+## Stack
 
-   ```bash
-   npx expo start
-   ```
+- Expo SDK 57 · React Native 0.86 · React 19
+- [Expo Router](https://docs.expo.dev/router/introduction/) (rutas tipadas, file-based routing)
+- React Compiler habilitado
+- Reanimated 4 + expo-haptics para animaciones y feedback
+- TypeScript
 
-In the output, you'll find options to open the app in a
+## Estructura
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+```
+src/
+├── app/            # Rutas (Expo Router)
+│   ├── (tabs)/     # Pestañas: Hoy y Explorar
+│   └── articles/   # Detalle de artículo por slug
+├── components/     # UI compartida (variantes .web.tsx para web)
+├── hooks/          # use-articles, use-protocol-progress, use-reminder...
+├── lib/            # Lógica: progreso, rachas, recordatorios, orden, fechas
+└── constants/      # Tema y tokens de diseño de Renew
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Empezar
 
-### Other setup steps
+Requisitos: Node 18+ y npm.
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+```bash
+npm install
+npx expo start
+```
 
-## Learn more
+Desde el menú de Expo puedes abrir la app en:
 
-To learn more about developing your project with Expo, look at the following resources:
+- Simulador de iOS (`npm run ios`)
+- Emulador de Android (`npm run android`)
+- Web (`npm run web`)
+- [Expo Go](https://expo.dev/go) o un [development build](https://docs.expo.dev/develop/development-builds/introduction/)
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+> Los recordatorios requieren un dispositivo físico o development build; las notificaciones no funcionan en Expo Go desde SDK 53.
 
-## Join the community
+## Scripts
 
-Join our community of developers creating universal apps.
+| Comando | Descripción |
+| --- | --- |
+| `npm start` | Inicia el servidor de desarrollo de Expo |
+| `npm run ios` / `android` | Compila y ejecuta en nativo |
+| `npm run web` | Ejecuta en el navegador |
+| `npm run lint` | Linter de Expo |
+| `node scripts/generate-brand-assets.mjs` | Regenera iconos y splash |
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## Licencia
+
+MIT
